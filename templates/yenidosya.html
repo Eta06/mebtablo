@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dosya Yükleme</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 400px;
+    animation: fadeIn 1s;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+#file-input {
+    display: none;
+}
+
+#label-file {
+    display: inline-block;
+    cursor: pointer;
+    padding: 15px 30px;
+    border: 1px solid #0099ff;
+    border-radius: 6px;
+    background-color: #0099ff;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#label-file:hover {
+    background-color: #007acc;
+}
+
+#file-name {
+    margin-top: 15px;
+    font-style: italic;
+    color: #666;
+}
+
+#submit-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 6px;
+    background-color: #0099ff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#submit-button:hover {
+    background-color: #007acc;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dosya Yükle</h1>
+        <form action="/yenidosya" method="post" enctype="multipart/form-data">
+            <p>Lütfen bir Excel (.xlsx veya .xls) dosyası seçin:</p>
+            <input type="file" id="file-input" name="file" accept=".xlsx,.xls">
+            <label for="file-input" id="label-file">Dosya Seç</label>
+            <span id="file-name"></span>
+            <br>
+            <button id="submit-button" type="submit">Yükle</button>
+        </form>
+    </div>
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const labelFile = document.getElementById('label-file');
+        const fileName = document.getElementById('file-name');
+        const submitButton = document.getElementById('submit-button');
+
+        fileInput.addEventListener('change', function() {
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                fileName.textContent = file.name;
+            } else {
+                fileName.textContent = "";
+            }
+        });
+
+        submitButton.addEventListener('click', function() {
+            if (fileInput.files.length === 0) {
+                alert('Lütfen bir dosya seçin!');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const extension = file.name.split('.').pop().toLowerCase();
+            if (extension !== 'xlsx' && extension !== 'xls') {
+                alert('Yalnızca .xlsx veya .xls dosyaları kabul edilmektedir!');
+                return;
+            }
+        });
+    </script>
+</body>
+</html>

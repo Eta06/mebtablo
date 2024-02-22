@@ -1,0 +1,179 @@
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ders Tablosu Oluşturucu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 80%;
+            max-width: 500px;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button-container:hover {
+            background-color: #f2f2f2;
+        }
+
+        .button-container h3 {
+            font-size: 1.2em;
+            margin: 0;
+            color: #333;
+        }
+
+        .button-container p {
+            font-size: 0.8em;
+            margin: 10px 0;
+            color: #666;
+        }
+        .button-row {
+            display: flex;
+            justify-content: space-around;
+        }
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+        .full-width-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 90%; /* Adjust width as needed */
+            margin: 20px auto;
+            padding: 20px;
+            height: 50px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .full-width-button:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ders Tablosu Oluşturucu</h1>
+    <div class="container">
+        <div class="button-row">
+            <div class="button-container animate__animated animate__fadeInLeft">
+                <h3>Öğretmenlerin Yatay Ders Tablosunu Oluştur</h3>
+                <p>Öğretmenlerin hangi derslere ne zaman gireceğini gösteren bir tablo oluşturur.</p>
+            </div>
+            <div class="button-container animate__animated animate__fadeInRight">
+                <h3>Sınıfların Yatay Ders Tablosunu Oluştur</h3>
+                <p>Sınıfların tüm derslerini yatay ve uzun listeli formatta gösteren bir tablo oluşturur.</p>
+            </div>
+        </div>
+        <!-- seperator line black -->
+        <div style="width: 100%; height: 1px; background-color: #000; margin: 20px 0;" class="animate__animated animate__fadeIn"></div>
+        <div class="button-row">
+            <div class="button-container animate__animated animate__fadeInLeft" onclick="location.href='/jsonkaydet?sheetname=teacher&sheetstyle=normal'">
+                <h3>Öğretmenlerin Ders Dosyasını JSON Olarak Kaydet</h3>
+                <p>Öğretmenlerin Ders Bilgilerini JSON formatında bir dosyaya kaydeder.</p>
+            </div>
+            <div class="button-container animate__animated animate__fadeInRight" onclick="location.href='/jsonkaydet?sheetname=class&sheetstyle=normal'">
+                <h3>Sınıfların Ders Dosyasını JSON Olarak Kaydet</h3>
+                <p>Sınıf bilgilerini JSON formatında bir dosyaya kaydeder.</p>
+            </div>
+        </div>
+        <div style="width: 100%; height: 1px; background-color: #000; margin: 20px 0;" class="animate__animated animate__fadeIn"></div>
+
+        <div class="full-width-button animate__animated animate__fadeIn" onclick="location.href='/yenidosya'">
+            <h3>Yeni Dosya Yükle</h3>
+            <p>Güncel Ders Programını Uygulamaya Aktarın</p>
+        </div>
+    </div>
+    <script>
+        if ("{{message}}" !== "") {
+            alert("{{message}}");
+            // redirect again without message
+            location.href = "/";
+        }
+        console.log("{{message}}");
+        function ogretmenCarsafSecim() {
+            Swal.fire({
+              title: 'Öğretmen Tablosu Oluşturucu',
+              text: 'Lütfen oluşturulmasını istediğiniz öğretmen tablosunun türünü seçin:',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Çarşaf Öğretmen Tablosu',
+              cancelButtonText: 'Gün Gün Öğretmen Tablosu'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.href = '/ogretmencarsaf?sheetname=teacher&sheetstyle=normal';
+              } else if (result.dismiss === Swal.DismissReason.cancel) {
+                location.href = '/ogretmengungun?gun=Pazartesi';
+              }
+            });
+          }
+        function sinifCarsafSecim() {
+            Swal.fire({
+              title: 'Sınıf Tablosu Oluşturucu',
+              text: 'Lütfen oluşturulmasını istediğiniz sınıf tablosunun türünü seçin:',
+              icon: 'question',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Çarşaf Sınıf Tablosu',
+              cancelButtonText: 'Gün Gün Sınıf Tablosu'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.href = '/sinifcarsaf?sheetname=class&sheetstyle=normal';
+              } else if (result.dismiss === Swal.DismissReason.cancel) {
+                location.href = '/sinifgungun?sheetname=class&sheetstyle=gungun';
+              }
+            });
+          }
+        document.querySelectorAll('.button-container')[0].addEventListener('click', ogretmenCarsafSecim);
+        document.querySelectorAll('.button-container')[1].addEventListener('click', sinifCarsafSecim);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ header }}</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styles */
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 0 auto 30px auto; /* Center the table */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f0f0f0; /* Light gray header */
+        }
+
+        /* Styling for Alternating Row Colors (Optional) */
+        tbody tr:nth-child(even) {
+            background-color: #f8f8f8;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h1>{{ header }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Sınıf</th>
+                <th>Gün</th>
+                <th>Ders 1</th>
+                <th>Ders 2</th>
+                <th>Ders 3</th>
+                <th>Ders 4</th>
+                <th>Ders 5</th>
+                <th>Ders 6</th>
+                <th>Ders 7</th>
+                <th>Ders 8</th>
+                <th>Ders 9</th>
+                <th>Ders 10</th>
+                <th>Gün</th>
+                <th>Ders 1</th>
+                <th>Ders 2</th>
+                <th>Ders 3</th>
+                <th>Ders 4</th>
+                <th>Ders 5</th>
+                <th>Ders 6</th>
+                <th>Ders 7</th>
+                <th>Ders 8</th>
+                <th>Ders 9</th>
+                <th>Ders 10</th>
+                <th>Gün</th>
+                <th>Ders 1</th>
+                <th>Ders 2</th>
+                <th>Ders 3</th>
+                <th>Ders 4</th>
+                <th>Ders 5</th>
+                <th>Ders 6</th>
+                <th>Ders 7</th>
+                <th>Ders 8</th>
+                <th>Ders 9</th>
+                <th>Ders 10</th>
+                <th>Gün</th>
+                <th>Ders 1</th>
+                <th>Ders 2</th>
+                <th>Ders 3</th>
+                <th>Ders 4</th>
+                <th>Ders 5</th>
+                <th>Ders 6</th>
+                <th>Ders 7</th>
+                <th>Ders 8</th>
+                <th>Ders 9</th>
+                <th>Ders 10</th>
+                <th>Gün</th>
+                <th>Ders 1</th>
+                <th>Ders 2</th>
+                <th>Ders 3</th>
+                <th>Ders 4</th>
+                <th>Ders 5</th>
+                <th>Ders 6</th>
+                <th>Ders 7</th>
+                <th>Ders 8</th>
+                <th>Ders 9</th>
+                <th>Ders 10</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hz, days in data.items() %}
+                <tr>
+                    <td>{{ hz }}</td>
+                    {% for day, hours in days.items() %}
+                        <td>{{ day }}</td>
+                        {% for hour, value in hours.items() %}
+    <td>{{ value if value is not none else '' }}</td>
+{% endfor %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+</body>
+</html>
