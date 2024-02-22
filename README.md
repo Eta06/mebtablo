@@ -1,4 +1,4 @@
-# MEB Ders Programı Görüntüleyici
+# MEB Ders Tablosu Görüntüleyici
 
 Bu proje, MEB (Milli Eğitim Bakanlığı) tarafından yayınlanan ders programı dosyalarını daha kullanıcı dostu bir biçimde sunmayı amaçlamaktadır. MEB'in resmi web sitesinden indirilen düzenlenmemiş Excel (.xlsx) dosyalarını işleyerek öğretmenlerin ve sınıfların ders programlarını hem tablo hem de günlük görünüm seçenekleriyle sunar. Ek olarak, JSON veri formatında indirme imkanı sağlar.
 
