@@ -141,10 +141,6 @@ def index():
 
 @app.route('/yenidosya', methods=["GET", "POST"])
 def yenidosya():
-    if dosyakontrol():
-        pass
-    else:
-        return redirect("/yenidosya")
     if request.method == "POST":
         if "file" not in request.files:
             return redirect(request.url)
@@ -178,10 +174,6 @@ def sinifcarsaf():
 
 @app.route("/jsonkaydet", methods=["GET", "POST"])
 def jsonkaydet():
-    if dosyakontrol():
-        pass
-    else:
-        return redirect("/yenidosya")
     sheetname = request.args.get("sheetname")
     sheetstyle = request.args.get("sheetstyle")
     if sheetname == "class":
@@ -234,3 +226,4 @@ def sinifgungun():
 if __name__ == '__main__':
     browserbaslat()
     app.run(port=6578)
+
