@@ -11,7 +11,7 @@ Bu proje, İTÜ Mesleki ve Teknik Anadolu Lisesi (MTAL) tarafından yayınlanan 
    ```
 3. **Projenin ana dizinine gidin:**
   ```bash
-   cd mebtablo
+   cd okultablo
    ```
 4. **Projenin gereksinimlerini indirin:**
  ```bash
